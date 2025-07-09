@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from store.models import Product
 from .models import Cart, CartItem
 from decimal import Decimal
+from django.core.exceptions import ObjectDoesNotExist
 
 def _cart_id(request):
     
@@ -67,19 +68,23 @@ def remove_cart_item(request, product_id):
     return redirect('cart')
 
 def cart(request):
-    cart_id = Cart.objects.get(
-        cart_id = _cart_id(request)
-        )
+    total = Decimal('0.00')
+    tax = Decimal('0.00')
+    total_with_tax = Decimal('0.00')
+    cart_items=[]
     
     try:
+        cart_id = Cart.objects.get(
+            cart_id = _cart_id(request)
+            )
         total = Decimal('0.00')
-        cart_items = CartItem.objects.filter(cart = cart_id)
+        cart_items = CartItem.objects.filter(cart = cart_id, is_active = True)
         for cart_item in cart_items:
             total += Decimal(cart_item.subtotal())
         tax = round(total * Decimal('0.10'), 2)
         total_with_tax = total+tax
 
-    except CartItem.DoesNotExist:
+    except ObjectDoesNotExist:
         pass
 
     context ={
