@@ -14,9 +14,12 @@ def _cart_id(request):
     return cart_id
 
 def add_cart(request,product_id):
+    if request.method == 'POST':
+        for item in request.POST:
+            key = item
+            value = request.POST[key]
 
-    color =request.GET('color')
-    size = request.GET('size')
+
     product = Product.objects.get(id = product_id)
 
     try:
