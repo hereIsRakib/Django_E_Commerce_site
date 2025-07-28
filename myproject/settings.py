@@ -137,3 +137,11 @@ MESSAGE_TAGS ={
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#SMTP CONFIGURATION
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "hokebar@gmail.com"
+EMAIL_HOST_PASSWORD = "qfzd hflc ykrj knhy"
+EMAIL_USE_TLS = True
