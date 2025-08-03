@@ -63,10 +63,11 @@
                         {% if user.is_authenticated %}
 
                             <div class="widget-header">
-                            <small class="title text-muted">Welcome {{user.first_name}}!</small>
-                            <div> 
-                                <a href="{% url "dashboard"%}">Dashboard</a> <span class="dark-transp"> | </span>
-                                <a href="{% url 'logout' %}"> Logout</a>
+                                <small class="title text-muted">Welcome {{user.first_name}}!</small>
+                                <div> 
+                                    <a href="{% url "dashboard"%}">Dashboard</a> <span class="dark-transp"> | </span>
+                                    <a href="{% url 'logout' %}"> Logout</a>
+                                </div>
                             </div>
                             
                         {% else %}
@@ -78,12 +79,13 @@
                                 </div>
                             </div>
                             
-                        </div>
+                        
                         {%endif%}
                         <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">
                             <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
                             <span class="badge badge-pill badge-danger notify">{{cart_item_total}}</span>
                         </a>
+                    </div>
                     </div> <!-- widgets-wrap.// -->
                 </div> <!-- col.// -->
     </div> <!-- row.// -->
